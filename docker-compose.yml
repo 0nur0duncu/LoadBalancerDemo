@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+
+  nginx:
+    build:
+      context : ./nginx/
+    depends_on:
+      - server1
+      - server2
+      - server3
+    ports:
+      - "80:80"
+    restart: always
+
+  server1:
+    build: 
+       context: ./golangService
+    environment:
+      SERVERID: 1
+    restart: always
+
+  server2:
+    build: 
+      context: ./golangService
+    environment:
+      SERVERID: 2
+    restart: always
+
+  server3:
+    build: 
+       context: ./golangService
+    environment:
+      SERVERID: 3
+    restart: always
